@@ -1,0 +1,4 @@
+client id :
+548314685133-k9qlu9psf9g5dncc8tg8ii4n96ft95bu.apps.googleusercontent.com
+client secrets:
+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
