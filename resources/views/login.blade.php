@@ -34,10 +34,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="username" id="username" placeholder="Your Username"required />
+                                <input type="text" name="email" id="email" placeholder="Your email"required />
                             </div>
-                                {{-- <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label> --}}
-                                <input type="hidden" name="email" id="email" placeholder="Your Username"required />
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                                 <input type="password" name="password" id="password" placeholder="Password"required/>

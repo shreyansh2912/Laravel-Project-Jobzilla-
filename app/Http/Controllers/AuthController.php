@@ -25,54 +25,40 @@ class AuthController extends Controller
     }
     public function store(Request $request)
     {
-        // echo "<pre>";
-        // print_r($_REQUEST);
-        // echo "</pre>";
-        // dd($request);
         $user = new User;
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = $request->password;
         $user->save();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-        return redirect('/login');
+        return redirect('/');
     }
 
     public function validate_login(Request $request)
-    {        
-        $request->validate(['username'=>'required','email','password'=>'required']);
+    {       
+        $request->validate(['email'=>'required','password'=>'required']);
+        $credential = $request->only('email','password','roll_as');
 
-        $credential = $request->only('username','password','roll_as');
-        // dd($credential);
         if(Auth::attempt($credential))
         {
-            // dd($credential);
             $roll_as = User::select('roll_as');
-            // $roll_as = User::all();
-            // dd($roll_as);
-            // echo"hello";
-            if ( auth::user()-> roll_as == 1)
+            if (Auth::user()->roll_as == 1)
             {
                 return redirect('admin');
             }
-            else
+            else if(Auth::user()->roll_as == 0)
             {
                 return redirect('/')->with('message','Login success');
             }
-            // dd("login success");
         }
-        else
-        {
-            return redirect('/login')->with('message','Login Failed');
-            // dd("login fail");
+        else{
+            echo "<script>alert('Invalid Username or Password')</script>";
+            return view('/login');
         }
-
-
     }
 
     public function logout()
     {
-        
         Auth::logout();
         Session::flush();
         return redirect('login');

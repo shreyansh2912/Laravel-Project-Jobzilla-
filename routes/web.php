@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackEnd\HomeController as BackEndHomeController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\GoogleController;
 use Illuminate\Routing\Route as RoutingRoute;
@@ -27,11 +28,6 @@ use Illuminate\Support\Facades\Route as FacadesRoute;
 |
 */
 
-Route::get('/home', function () {
-    return view('login');
-});
-
-
 
 Route::get('/',[HomeController::class,'index']);
 
@@ -43,12 +39,8 @@ Route::post('/login',[AuthController::class,'validate_login']);
 
 Route::get('/logout',[AuthController::class,'logout']);
 
-Route::get('/shre',function(){
-     return "success";
-});
-Route::get('/shrey',function(){
-     return "success";
-});
+Route::get('/company-register',[CompanyController::class,'index']);
+Route::get('/company-login',[CompanyController::class,'login']);
 
 // Route::get('/clear-cache',function(){
 //     $run = Artisan::call('config:clear');
@@ -61,10 +53,10 @@ Route::get('/shrey',function(){
 
 Route::get('/hello',[AuthController::class,'index2'])->middleware('guest')->name('hello');
 
-Route::get('/admin',[BackEndHomeController::class,'index'])->middleware(['auth','Admin_middleware']);
+// Route::get('/admin',[BackEndHomeController::class,'index'])->middleware(['auth','Admin_middleware']);
 
 
-Route::patch('',[BackEndHomeController::class,'']);
+// Route::patch('',[BackEndHomeController::class,'']);
 
 // Route::get('/login', function () {
 //     return redirect(route('filament.admin.auth.login'));
