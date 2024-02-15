@@ -25,6 +25,12 @@ class AuthController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'email'=>'required|unique:users,email',
+            'name'=>'required',
+            'username'=>'required|unique:users,username',
+            'password'=>'required|max:8|min:6'
+        ]);
         $user = new User;
         $user->name = $request->name;
         $user->username = $request->username;
@@ -37,7 +43,7 @@ class AuthController extends Controller
     public function validate_login(Request $request)
     {       
         $request->validate(['email'=>'required','password'=>'required']);
-        $credential = $request->only('email','password','roll_as');
+        $credential = $request->only('email','password');
 
         if(Auth::attempt($credential))
         {

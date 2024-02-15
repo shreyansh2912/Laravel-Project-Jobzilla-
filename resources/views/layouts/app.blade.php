@@ -656,7 +656,7 @@
 <script  src="{{asset('assets/js/switcher.js')}}"></script><!-- SHORTCODE FUCTIONS  -->
 
 <!-- STYLE SWITCHER  ======= --> 
-<div class="styleswitcher">
+{{-- <div class="styleswitcher">
 
     <div class="switcher-btn-bx">
         <a class="switch-btn">
@@ -682,7 +682,7 @@
         </ul>           
         
     </div>    
-</div>
+</div> --}}
 
 
 </body>
