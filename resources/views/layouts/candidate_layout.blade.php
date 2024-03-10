@@ -296,7 +296,7 @@
                     </li>
 
                     <li>
-                        <a href="{{url('resume_alert')}}"><i class="fa fa-bell"></i><span class="admin-nav-text">Resume Alerts</span></a>
+                        <a href="{{url('employee/resume_alert')}}"><i class="fa fa-bell"></i><span class="admin-nav-text">Resume Alerts</span></a>
                     </li>  
                     
                     <li>

@@ -4,19 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Fav_resumeController extends Controller
+class JobsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('candidate.Fav_resumes');
+        return view('candidate.Add_Jobs');
     }
 
-    public function resume_alert(){
-        return view('candidate.resume_alert');
-    }
     /**
      * Show the form for creating a new resource.
      */

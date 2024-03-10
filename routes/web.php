@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BackEnd\HomeController as BackEndHomeController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\Fav_resumeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\JobsController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -74,13 +77,16 @@ Route::prefix('employee')->group(function(){
 
     Route::get('/dashboard',[EmployeeController::class,'index']);
     Route::get('/company_profile',[EmployeeController::class,'profile']);
-    Route::get('/Add-jobs',[EmployeeController::class,'profile']);
-    Route::get('/candidate-list',[EmployeeController::class,'profile']);
+    Route::get('/Add-jobs',[JobsController::class,'index']);
+    Route::get('/candidate-list',[CandidateController::class,'profile']);
     Route::get('/change_password',[EmployeeController::class,'profile']);
-    Route::get('/fav_resumes',[EmployeeController::class,'profile']);
+    Route::get('/fav_resumes',[Fav_resumeController::class,'index']);
     Route::get('/job-list',[EmployeeController::class,'profile']);
     Route::get('/messages',[ChatController::class,'index']);
     Route::get('/my_profile',[EmployeeController::class,'profile']);
-    Route::get('/resume_alert',[EmployeeController::class,'profile']);
+    Route::get('/resume_alert',[Fav_resumeController::class,'resume_alert']);
 
 });
+
+
+
