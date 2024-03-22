@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route as FacadesRoute;
 */
 
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/home',[HomeController::class,'index']);
 
 Route::get('/register',[AuthController::class,'index'])->middleware('guest');
 Route::post('/register',[AuthController::class,'store']);

@@ -43,7 +43,7 @@ class AuthController extends Controller
     public function validate_login(Request $request)
     {       
         $request->validate(['email'=>'required','password'=>'required']);
-        $credential = $request->only('email','password');
+        $credential = $request->only('email','password','roll_as');
 
         if(Auth::attempt($credential))
         {

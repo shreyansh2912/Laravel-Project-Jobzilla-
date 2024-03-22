@@ -11,6 +11,15 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="{{asset('assets/register/css/style.css')}}">
+    <style>
+        .signin-content{
+            margin-top:-80px;
+        }
+        .main{
+            height: 445px;
+            background-color:bisque;
+        }
+    </style>
 </head>
 <body>
     <div class="main">
@@ -34,11 +43,21 @@
                             @csrf
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="email" id="email" placeholder="Your email"required />
+                                <input type="text" name="email" id="email" placeholder="Your email" value="{{old('email')}}" required/>
+                                <span style="color: red;">
+                                    @error('email')
+                                    {{$message}}
+                                    @enderror
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="password" id="password" placeholder="Password"required/>
+                                <input type="password" name="password" id="password" placeholder="Password" value="{{old('password')}}" required />
+                                <span style="color: red;">
+                                    @error('password')
+                                    {{$message}}
+                                    @enderror
+                                </span>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
