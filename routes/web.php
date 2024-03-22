@@ -47,13 +47,10 @@ Route::get('/logout',[AuthController::class,'logout']);
 Route::get('/company-register',[CompanyController::class,'index']);
 Route::get('/company-login',[CompanyController::class,'login']);
 
-// Route::get('/clear-cache',function(){
-//     $run = Artisan::call('config:clear');
-//     $run = Artisan::call('cache:clear');
-//     $run = Artisan::call('config:cache');
-//     $run = Artisan::call('optimize:cache');
-//     return "Finished";
-// });
+//  Artisan::call('config:clear');
+//  Artisan::call('cache:clear');
+//  Artisan::call('config:cache');
+//  Artisan::call('optimize:cache');
 
 
 Route::get('/hello',[AuthController::class,'index2'])->middleware('guest')->name('hello');
@@ -70,8 +67,6 @@ Route::get('/hello',[AuthController::class,'index2'])->middleware('guest')->name
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 
 Route::get('callback/google', [GoogleController::class, 'handleCallback']);
-
-
 
 Route::prefix('employee')->group(function(){
 
