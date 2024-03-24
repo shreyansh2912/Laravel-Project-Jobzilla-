@@ -15,10 +15,7 @@ class AuthController extends Controller
     {
         return view ('register');
     }
-    public function index2()
-    {
-        return view ('welcome');
-    }
+
     public function login()
     {
         return view ('login');
@@ -36,8 +33,15 @@ class AuthController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = $request->password;
-        $user->save();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-        return redirect('/');
+        $user->save();             
+        $request->session()->put("name",$request->name);
+        $request->session()->put("email",$request->email);
+        $response = response($request->name);
+        $response->withCookie('name',$request->name,6000);
+        $sessionName = session('name');
+        $sessionEmail = session('email');
+        // @dd($sessionName,$sessionEmail);
+        return redirect('/candidate-details/personal');
     }
 
     public function validate_login(Request $request)

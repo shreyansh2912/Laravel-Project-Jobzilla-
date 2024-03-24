@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BackEnd\HomeController as BackEndHomeController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\CandidateDetailsController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
@@ -13,11 +13,6 @@ use App\Http\Controllers\JobsController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-
-// use App\Http\Controllers\Auth\GoogleSocialiteController;
-// use App\Http\Controllers\AuthController;
-// use App\Http\Controllers\Frontend\HomeController;
-// use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route as FacadesRoute;
 
 // use Illuminate\Support\Facades\Route;
@@ -47,26 +42,22 @@ Route::get('/logout',[AuthController::class,'logout']);
 Route::get('/company-register',[CompanyController::class,'index']);
 Route::get('/company-login',[CompanyController::class,'login']);
 
-//  Artisan::call('config:clear');
-//  Artisan::call('cache:clear');
-//  Artisan::call('config:cache');
-//  Artisan::call('optimize:cache');
-
-
-Route::get('/hello',[AuthController::class,'index2'])->middleware('guest')->name('hello');
-
-// Route::get('/admin',[BackEndHomeController::class,'index'])->middleware(['auth','Admin_middleware']);
-
-
-// Route::patch('',[BackEndHomeController::class,'']);
-
-// Route::get('/login', function () {
-//     return redirect(route('filament.admin.auth.login'));
-// })->name('login');   
-
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 
 Route::get('callback/google', [GoogleController::class, 'handleCallback']);
+
+
+Route::prefix('/candidate-details')->middleware('guest')->group(function(){
+
+    Route::get('/personal',[CandidateDetailsController::class,'index'])->name('personal');
+    Route::post('/personal',[CandidateDetailsController::class,'create_personal']);
+    
+    Route::get('/employment',[CandidateDetailsController::class,'employment'])->name('employment');
+    Route::post('/employment',[CandidateDetailsController::class,'create_employment']);
+    
+    Route::get('/education',[CandidateDetailsController::class,'eduction'])->name('education');
+    Route::post('/education',[CandidateDetailsController::class,'create_education']);
+});
 
 Route::prefix('employee')->group(function(){
 
@@ -84,4 +75,14 @@ Route::prefix('employee')->group(function(){
 });
 
 
+
+
+
+
+
+
+//  Artisan::call('config:clear');
+//  Artisan::call('cache:clear');
+//  Artisan::call('config:cache');
+//  Artisan::call('optimize:cache');
 
