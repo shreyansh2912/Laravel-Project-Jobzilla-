@@ -124,21 +124,30 @@
                                                             <div class="form-group">
                                                                 <label>Your Name</label>
                                                                 <div class="ls-inputicon-box"> 
-                                                                    <input class="form-control" name="company_name" type="text" placeholder="Devid Smith" value="{{session('name')}}">
+                                                                    <input class="form-control" name="name" type="text" placeholder="Devid Smith" value="{{session('name')}}"required>
                                                                     <i class="fs-input-icon fa fa-user "></i>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <span>
+                                                            @error('name')
+                                                                {{$message}}
+                                                            @enderror
+                                                        </span>
                                                         <div class="col-xl-6 col-lg-6 col-md-12">
                                                             <div class="form-group">
                                                                 <label>Email Address</label>
                                                                 <div class="ls-inputicon-box"> 
-                                                                    <input class="form-control" name="company_Email" type="email" value=" {{session('email')}}">
+                                                                    <input class="form-control" name="email" type="email" value=" {{session('email')}}" required>
                                                                     <i class="fs-input-icon fas fa-at"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        
+                                                        <span>
+                                                            @error('email')
+                                                                {{$message}}
+                                                            @enderror
+                                                        </span>
                                                         {{-- <div class="col-xl-6 col-lg-6 col-md-12">
                                                             <div class="form-group">
                                                                 <label>Create Password</label>
@@ -153,33 +162,41 @@
                                                             <div class="form-group">
                                                                 <label>Phone Number</label>
                                                                 <div class="ls-inputicon-box"> 
-                                                                    <input class="form-control" name="company_phone" type="text" placeholder="(251) 1234-456-7890">
+                                                                    <input class="form-control" name="phone" type="text" placeholder="(251) 1234-456-7890" required>
                                                                     <i class="fs-input-icon fa fa-phone-alt"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
-
+                                                        <span>
+                                                            @error('phone')
+                                                                {{$message}}
+                                                            @enderror
+                                                        </span>
                                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                                             <div class="form-group">
                                                                 <label>Current City</label>
                                                                 <div class="ls-inputicon-box"> 
-                                                                    <input class="form-control" name="company_phone" type="text" placeholder="Tell us about your current city">
+                                                                    <input class="form-control" name="city" type="text" placeholder="Tell us about your current city" required>
                                                                     <i class="fs-input-icon fa fa-globe-americas"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <div class="col-lg-12 col-md-12">
+                                                        <span>
+                                                            @error('city')
+                                                                {{$message}}
+                                                            @enderror
+                                                        </span>
+                                                        {{-- <div class="col-lg-12 col-md-12">
                                                             <div class="form-group">
                                                                 <label>Upload Resume</label>
                                                                 <form action="" class="dropzone"></form>
                                                                 <small>If you do not have a resume document, you may write your brief professional profile <a class="site-text-primary" href="javascript:void(0);">here</a></small>
                                                             </div>                                    
-                                                        </div>
+                                                        </div> --}}
 
                                                         <div class="col-xl-12 col-lg-12">
                                                             <div class="form-group">
-                                                                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                                                <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" checked required>
                                                                 <label class="form-check-label" for="flexRadioDefault2">
                                                                     I agree to the Terms and Conditions and Privacy Policy.
                                                                 </label>

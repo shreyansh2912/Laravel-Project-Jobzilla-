@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::create('employment_details', function (Blueprint $table) {
             $table->id();
-            $table->string('current_job');
-            $table->string('current_company');
-            $table->bigInteger('salary');
-            $table->string('current_location');
-            $table->string('current_location');
+            $table->string('experiance');
+            $table->string('current_job')->nullable();
+            $table->string('current_company')->nullable();
+            $table->bigInteger('salary')->nullable();
+            $table->string('current_location')->nullable();
+            $table->string('skills')->nullable();
+            $table->string('industry')->nullable();
+            $table->string('role')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -24,15 +24,27 @@ class CandidateDetailsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create_personal()
+    public function create_personal(Request $request)
     {
-        return redirect('candidate-details/employment');
+        // print_r($request);
+        // @dd($request);
+        $name = session('name');
+        $email = session('email');
+        if($request->name == $name && $request->email == $email){
+            // @dd("hello");
+            $request->validate([
+                "name"=>"required|",
+                'email'=>"required|",
+                "phone"=>'required|regex:/(01)[0-9]{9}/'
+            ]);
+            return redirect('candidate-details/employment');
+        }
     }
-    public function create_employment()
+    public function create_employment(Request $request)
     {
         return redirect('candidate-details/education');
     }
-    public function create_eduction()
+    public function create_eduction(Request $request)
     {
         return redirect('home');
     }
@@ -42,7 +54,6 @@ class CandidateDetailsController extends Controller
      */
     public function store(Request $request)
     {
-        print_r($request);
     }
 
     /**

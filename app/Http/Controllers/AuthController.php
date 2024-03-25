@@ -37,9 +37,6 @@ class AuthController extends Controller
         $request->session()->put("name",$request->name);
         $request->session()->put("email",$request->email);
         $response = response($request->name);
-        $response->withCookie('name',$request->name,6000);
-        $sessionName = session('name');
-        $sessionEmail = session('email');
         // @dd($sessionName,$sessionEmail);
         return redirect('/candidate-details/personal');
     }

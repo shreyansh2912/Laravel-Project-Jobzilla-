@@ -8,11 +8,17 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
+     */ 
     public function up(): void
     {
         Schema::create('education_details', function (Blueprint $table) {
             $table->id();
+            $table->string('highest_qualification');
+            $table->string('course');
+            $table->string('specialization');
+            $table->string('university');
+            $table->string('course_type');
+            $table->string('education');
             $table->timestamps();
         });
     }
