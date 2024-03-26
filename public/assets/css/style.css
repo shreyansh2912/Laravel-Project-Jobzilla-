@@ -172,7 +172,9 @@ This files [Table of contents] are outlined below
 .site-bg-light-purple {
   background-color: #f0f6fe;
 }
-
+span{
+  color: red;
+}
 body {
   color: #3c3c3c;
   font-family: "Rubik", sans-serif;

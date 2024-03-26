@@ -17,7 +17,9 @@
         }
         .main{
             height: 445px;
-            background-color:bisque;
+            /* background-color:bisque; */
+            /* background-color:#1967D2 ; */
+            background-color:#004cbe ;
         }
     </style>
 </head>

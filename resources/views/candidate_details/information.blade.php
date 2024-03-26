@@ -24,7 +24,7 @@
     
     <!-- MOBILE SPECIFIC -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}"><!-- BOOTSTRAP STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}"><!-- FONTAWESOME STYLE SHEET -->
