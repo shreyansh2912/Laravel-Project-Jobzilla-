@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('employment_details', function (Blueprint $table) {
             $table->id();
-            $table->string('experiance');
             $table->string('current_job')->nullable();
             $table->string('current_company')->nullable();
-            $table->bigInteger('salary')->nullable();
+            $table->string('salary')->nullable();
+            $table->integer('experiance');
             $table->string('current_location')->nullable();
             $table->string('skills')->nullable();
             $table->string('industry')->nullable();

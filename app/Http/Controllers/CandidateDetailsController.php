@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EducationDetails;
+use App\Models\EmploymentDetails;
 use App\Models\PersonalDetails;
 use App\Models\User;
 use Filament\Forms\Components\KeyValue;
@@ -58,25 +59,48 @@ class CandidateDetailsController extends Controller
             // @dd($request->name." " . $name." ".$request->email." ".$email );
         }
     }
-    public function create_employment(Request $request , EducationDetails $educationDetails)
+    public function create_employment(Request $request , EmploymentDetails $employmentDetails)
     {  
+
         $request->validate([
-            "name"=>"required",
-            'email'=>"required",
-            "phone"=>'required | min:10',
-            'city'=>'required'
+            'current_job'=> 'required',
+            'current_company' => 'required',
+            'salary'=> 'required',
+            'experiance'=>'required',
+            'current_location'=> 'required',
+            'skills'=> 'required',
+            'industry'=> 'required',
+            'role'=> 'required',
         ]);  
-        $EducationDetails = new EducationDetails;
-        $EducationDetails->name = $request->name;
-        $EducationDetails->email = $request->email;
-        $EducationDetails->phone = $request->phone;
-        $EducationDetails->city = $request->city;
-        $EducationDetails->user_id = session('id') ;
-        $EducationDetails->save();
+        $employmentDetails = new EmploymentDetails;
+        $employmentDetails->current_job = $request->current_job;
+        $employmentDetails->current_company = $request->current_company;
+        $employmentDetails->salary = $request->salary;
+        $employmentDetails->current_location = $request->current_location;
+        $employmentDetails->skills = $request->skills;
+        $employmentDetails->experiance = $request->experiance;
+        $employmentDetails->industry = $request->industry;
+        $employmentDetails->role = $request->role;
+        $employmentDetails->user_id = session('id') ;
+        $employmentDetails->save();
         return redirect('candidate-details/education');
     }
-    public function create_eduction(Request $request)
+    public function create_education(Request $request,EducationDetails $educationDetails)
     {
+        $request->validate([
+            'highest_qualification'=>"required",
+            'course'=>'required',
+            'specialization'=>'required',
+            'university'=>'required',
+            'education'=>'required'
+        ]);
+        $educationDetails = new EducationDetails;
+        $educationDetails->highest_qualification = $request->highest_qualification;
+        $educationDetails->course = $request->course;
+        $educationDetails->specialization = $request->specialization;
+        $educationDetails->university = $request->university;
+        $educationDetails->education = $request->education;
+        $educationDetails->save();
         return redirect('home');
     }
 

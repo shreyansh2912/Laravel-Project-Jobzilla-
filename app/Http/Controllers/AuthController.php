@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Termwind\Components\Dd;
+
+use function Laravel\Prompts\select;
 
 class AuthController extends Controller
 {
@@ -48,15 +51,26 @@ class AuthController extends Controller
 
         if(Auth::attempt($credential))
         {
-            $roll_as = User::select('roll_as');
-            if (Auth::user()->roll_as == 1)
-            {
-                return redirect('admin');
-            }
-            else if(Auth::user()->roll_as == 0)
-            {
-                return redirect('/')->with('message','Login success');
-            }
+            // $personal_details = PersonalDetails::where('id',);
+            // @dd(Auth::personal_details()->);
+            $id = DB::table('users')->where('email',$request->email)->get('id');
+            $id = $id[0]->{'id'};
+            // @dd($id);    
+            $personal_details = DB::table('personal_details')->where('email',$request->email);
+            @dd($personal_details);
+            // if(!$personal_details){
+                $roll_as = User::select('roll_as');
+                if (Auth::user()->roll_as == 1)
+                {
+                    return redirect('admin');
+                }
+                else if(Auth::user()->roll_as == 0)
+                {
+                    return redirect('/home')->with('message','Login success');
+                }
+            // }else{
+                // return "hll";
+            // }
         }
         else{
             echo "<script>alert('Invalid Username or Password')</script>";

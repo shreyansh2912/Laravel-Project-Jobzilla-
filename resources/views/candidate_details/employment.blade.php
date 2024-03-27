@@ -46,7 +46,11 @@
     <link rel="stylesheet" class="skin" type="text/css" href="css/skins-type/skin-6.css">
     <!-- SIDE SWITCHER STYLE SHEET -->
     <link rel="stylesheet" type="text/css" href="css/switcher.css">  
-    
+    <style>
+        .span{
+            color: red;
+        }
+    </style>
 </head>
 <div class="page-content">
 
@@ -77,9 +81,9 @@
 
     <!-- Employer Account START -->
     <div class="section-full p-t120  p-b90 site-bg-white bg-cover twm-ac-fresher-wrap" style="background-image:url(images/background/pattern.jpg)">
-        <span class="twm-section-bg-img">
+        <div class="twm-section-bg-img">
             <img src="{{asset('assets/images/reg-bg2.png')}}" alt="">
-        </span>
+        </div>
 
         <div class="container">
             <div class="row d-flex justify-content-center">
@@ -120,50 +124,58 @@
                                     
                                             <div class="tab-pane fade show active" id="Employment">
                                                 <div class="row">
+                                                    <div class="col-xl-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            <label></label>
+                                                            <div class="row twm-form-radio-inline" style="margin-bottom: 40px; margin-top:-50px; ">
+                                                                
+                                                                <div class="col-md-6">
+                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                                        Experianced
+                                                                    </label>
+                                                                </div>
+
+                                                                <div  class="col-md-6"  >
+                                                                        <a href="education" class="form-check-label" for="edu">
+                                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="edu" >
+                                                                            Freasher
+                                                                        </a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                                         <div class="form-group">
                                                             <label>Current Desination*</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_name" type="text" placeholder="Your Job Title">
+                                                                <input class="form-control" name="current_job" type="text" placeholder="Your Job Title" value="{{old('current_job')}}">
                                                                 <i class="fs-input-icon fa fa-address-card "></i>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <span class="span">
+                                                        @error('current_job')
+                                                            {{$message}}
+                                                        @enderror
+                                                    </span>
 
                                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                                         <div class="form-group">
                                                             <label>Current Company*</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_Email" type="email" placeholder="Where you are currently working">
+                                                                <input class="form-control" name="current_company" type="email" placeholder="Where you are currently working" value="{{old('current_company')}}">
                                                                 <i class="fs-input-icon fas fa-building"></i>
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-xl-12 col-lg-12">
-                                                        <div class="form-group">
-                                                            <label>Expected Salary</label>
-                                                            <div class="row twm-form-radio-inline">
-                                                                
-                                                                <div class="col-md-6">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                                        US Dollars
-                                                                    </label>
-                                                                </div>
-
-                                                                <div class="col-md-6">
-                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5" checked>
-                                                                    <label class="form-check-label" for="flexRadioDefault5">
-                                                                        Indian Rupees
-                                                                    </label>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                                     <span class="span" >
+                                                        @error('current_company')
+                                                            {{$message}}
+                                                        @enderror
+                                                     </span>
                                                     <div class="col-xl-12 col-lg-12">
                                                         <div>
                                                             <label>Annual Salary</label>
@@ -172,21 +184,20 @@
                                                                 <div class="col-xl-6 col-lg-6">
                                                                     <div class="form-group">
                                                                         <div class="ls-inputicon-box">  
-                                                                            <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="s-Lakh" data-bv-field="size">
-                                                                                <option class="bs-title-option" value="">Lakh</option>
-                                                                                <option>0 lakh</option>
-                                                                                <option>1 lakh</option>
-                                                                                <option>2 lakh</option>
-                                                                                <option>5 lakh</option>
-                                                                                <option>4 lakh</option>
-                                                                                <option>5 lakh</option>
+                                                                            <select class="wt-select-box selectpicker" name="salary" data-live-search="true" title="" id="s-Lakh" data-bv-field="size" >
+                                                                                <option class="bs-title-option" value="{{old('salary')}}">Lakh</option>
+                                                                                <option>0 to 5</option>
+                                                                                <option>5 to 10</option>
+                                                                                <option>10 to 15</option>
+                                                                                <option>15 to 20</option>
+                                                                                <option>20 Above</option>
                                                                             </select>
                                                                             <i class="fs-input-icon fa fa-dollar-sign"></i>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="col-xl-6 col-lg-6">
+                                                                {{-- <div class="col-xl-6 col-lg-6">
                                                                     <div class="form-group">
                                                                         <div class="ls-inputicon-box">  
                                                                             <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="s-Thousand" data-bv-field="size">
@@ -205,8 +216,13 @@
                                                                             <i class="fs-input-icon fa fa-dollar-sign"></i>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
+                                                            <span class="span">
+                                                                @error('salary')
+                                                                    {{$message}}
+                                                                @enderror
+                                                            </span>
                                                         </div>
                                                     </div>
 
@@ -219,56 +235,43 @@
                                                                 <div class="col-xl-6 col-lg-6">
                                                                     <div class="form-group">
                                                                         <div class="ls-inputicon-box">  
-                                                                            <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="s-Year_1" data-bv-field="size">
-                                                                                <option class="bs-title-option" value="">Year</option>
-                                                                                <option>0</option>
-                                                                                <option>1</option>
-                                                                                <option>2</option>
-                                                                                <option>3</option>
-                                                                                <option>4</option>
-                                                                                <option>5</option>
+                                                                            <select class="wt-select-box selectpicker" name="experiance" data-live-search="true" title="" id="s-Year_1" data-bv-field="size">
+                                                                                <option class="bs-title-option"  value="{{old('experiance')}}">Year</option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                                <option value="10">Above</option>
                                                                             </select>
                                                                             <i class="fs-input-icon fa fa-calendar"></i>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="col-xl-6 col-lg-6">
-                                                                    <div class="form-group">
-                                                                        <div class="ls-inputicon-box">  
-                                                                            <select class="wt-select-box selectpicker"  data-live-search="true" title="" id="s-Month_1" data-bv-field="size">
-                                                                                <option class="bs-title-option" value="">Month</option>
-                                                                                <option> 1 </option>
-                                                                                <option> 2 </option>
-                                                                                <option> 3 </option>
-                                                                                <option> 4 </option>
-                                                                                <option> 5 </option>
-                                                                                <option> 6 </option>
-                                                                                <option> 7 </option>
-                                                                                <option> 8 </option>
-                                                                                <option> 9 </option>
-                                                                                <option> 10 </option>
-                                                                                <option> 11 </option>
-                                                                                <option> 12 </option>
-                                                                                </select>
-                                                                            <i class="fs-input-icon fa fa-calendar"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <span class="span">
+                                                        @error('experiance')
+                                                            {{$message}}
+                                                        @enderror
+                                                    </span>
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label>Current Location</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_phone" type="text" placeholder="Tell us about your current city">
+                                                                <input class="form-control" name="current_location" type="text" placeholder="Tell us about your current city" value="{{old('current_location')}}">
                                                                 <i class="fs-input-icon fa fa-globe-americas"></i>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <span class="span">
+                                                        @error('current_location')
+                                                            {{$message}}
+                                                        @enderror
+                                                    </span>
 
+{{--                                                
                                                     <div class="col-xl-12 col-lg-12">
                                                         <div class="form-group">
                                                             <label>Duration of Notice Period</label>
@@ -285,29 +288,37 @@
                                                                 <i class="fs-input-icon fa fa-calendar"></i>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label>Skills</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" type="text" value="Finance, Sales, Retail, Engineering">
+                                                                <input class="form-control"name="skills" type="text" placeholder="Finance, Sales, Retail, Engineering" value="{{old('skills')}}">
                                                                 <i class="fs-input-icon fas fa-asterisk"></i>
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <span class="span">
+                                                        @error('skills')
+                                                            {{$message}}
+                                                        @enderror
+                                                    </span>
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label>Industry</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_phone" type="text" placeholder="Your Industry">
+                                                                <input class="form-control" name="industry" type="text" placeholder="Your Industry" value="{{old('industry')}}">
                                                                 <i class="fs-input-icon fa fa-industry"></i>
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                                    <span class="span">
+                                                        @error('industry')
+                                                            {{$message}}
+                                                        @enderror
+                                                    </span>
+                                                    {{-- <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label>Functional Area</label>
                                                             <div class="ls-inputicon-box"> 
@@ -315,13 +326,13 @@
                                                                 <i class="fs-input-icon fa fa-industry"></i>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
                                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                                         <div class="form-group">
                                                             <label>Role</label>
                                                             <div class="ls-inputicon-box input_fields_custom"> 
-                                                                <input class="form-control" name="company_phone" type="text" placeholder="Select the role that you work in">
+                                                                <input class="form-control" name="role" type="text" placeholder="Select the role that you work in" value="{{old('role')}}">
                                                                 <i class="fs-input-icon fa fa-user"></i>
                                                             </div>
                                                             <div class="text-right m-tb10">
@@ -329,10 +340,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
+                                                    <span class="span">
+                                                        @error('role')
+                                                            {{$message}}
+                                                        @enderror
+                                                    </span>
                                                     <div class="col-xl-12 col-lg-12 col-md-12">                                  
                                                         <div class="text-left">
-                                                            <button type="submit" class="site-button " >Continue</button>
+                                                            <button type="submit" class="site-button">Continue</button>
                                                         </div>
                                                     </div>                                         
                                                 
@@ -356,39 +371,12 @@
         </div>
     </div>   
      <!-- Employer Account START END -->
-  {{-- <script>
-    function first() {
-        let first = document.getElementById("first");
-        let second = document.getElementById("second");
-        let Personal = document.getElementById("Personal")
-        let Employment = document.getElementById("Employment");
-        // console.log(second);
-        second.className += " active";
-        first.classList.remove("active");
-        Personal.classList.remove("active");
-        Personal.classList.remove("show");
-        Employment.className += " active";
-        Employment.className += " show";
-        // console.log(Employment);
-        // console.log(first);
-        // console.log(second);
+  <script>
+    function eduction() {
+      
     }
-    function second(){
-        let second = document.getElementById("second");
-        let three = document.getElementById("three");
-        let Employment = document.getElementById("Employment");
-        let Education = document.getElementById("Education");
-        // console.log(three);
-        Employment.classList.remove("active");
-        Employment.classList.remove("show");
-        Education.className += " active";
-        Education.className += " show";
-        three.className += " active";
-        second.classList.remove("active");
-        // first.className -= " active";
-        // console.log(three);
-    }
-  </script> --}}
+   
+  </script>
     
 
 </div>

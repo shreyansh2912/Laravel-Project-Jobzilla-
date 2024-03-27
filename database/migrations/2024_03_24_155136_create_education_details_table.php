@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('course');
             $table->string('specialization');
             $table->string('university');
-            $table->string('course_type');
             $table->string('education');
             $table->timestamps();
         });
