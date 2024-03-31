@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CandidateDetailsController;
+use App\Http\Controllers\CandidateProfileController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\Route as FacadesRoute;
 |
 */
 
+// Route::get('/',[HomeController::class,'index']);
 
 Route::get('/home',[HomeController::class,'index']);
 
@@ -42,10 +44,16 @@ Route::get('/logout',[AuthController::class,'logout']);
 Route::get('/company-register',[CompanyController::class,'index']);
 Route::get('/company-login',[CompanyController::class,'login']);
 
-Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('authorized/google', [GoogleController::class, 'redirectToGoogle']);
 
 Route::get('callback/google', [GoogleController::class, 'handleCallback']);
 
+Route::prefix('candidate')->group(function(){
+
+    Route::get('dashboard',[CandidateProfileController::class,'index']);
+    
+
+});
 
 Route::prefix('/candidate-details')->middleware('guest')->group(function(){
 

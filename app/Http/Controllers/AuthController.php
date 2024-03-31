@@ -51,15 +51,10 @@ class AuthController extends Controller
 
         if(Auth::attempt($credential))
         {
-            // $personal_details = PersonalDetails::where('id',);
-            // @dd(Auth::personal_details()->);
-            $id = DB::table('users')->where('email',$request->email)->get('id');
-            $id = $id[0]->{'id'};
-            // @dd($id);    
-            $personal_details = DB::table('personal_details')->where('email',$request->email);
-            @dd($personal_details);
+            $personal_details = User::with('personal_detail')->where("id",1); 
+            // return $personal_details->all();
             // if(!$personal_details){
-                $roll_as = User::select('roll_as');
+                // $roll_as = User::select('roll_as');
                 if (Auth::user()->roll_as == 1)
                 {
                     return redirect('admin');

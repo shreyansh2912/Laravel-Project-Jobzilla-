@@ -16,4 +16,8 @@ class PersonalDetails extends Model
         'city',
         'user_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
