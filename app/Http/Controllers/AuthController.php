@@ -51,21 +51,14 @@ class AuthController extends Controller
 
         if(Auth::attempt($credential))
         {
-            $personal_details = User::with('personal_detail')->where("id",1); 
-            // return $personal_details->all();
-            // if(!$personal_details){
-                // $roll_as = User::select('roll_as');
                 if (Auth::user()->roll_as == 1)
                 {
                     return redirect('admin');
                 }
                 else if(Auth::user()->roll_as == 0)
                 {
-                    return redirect('/home')->with('message','Login success');
+                    return redirect('/')->with('message','Login success');
                 }
-            // }else{
-                // return "hll";
-            // }
         }
         else{
             echo "<script>alert('Invalid Username or Password')</script>";

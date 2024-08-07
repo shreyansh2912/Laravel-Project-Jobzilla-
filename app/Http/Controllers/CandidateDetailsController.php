@@ -101,7 +101,7 @@ class CandidateDetailsController extends Controller
         $educationDetails->university = $request->university;
         $educationDetails->education = $request->education;
         $educationDetails->save();
-        return redirect('home');
+        return redirect('/login');
     }
 
     /**

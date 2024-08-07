@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route as FacadesRoute;
 
 // Route::get('/',[HomeController::class,'index']);
 
-Route::get('/home',[HomeController::class,'index']);
+Route::get('/',[HomeController::class,'index']);
 
 Route::get('/register',[AuthController::class,'index'])->middleware('guest');
 Route::post('/register',[AuthController::class,'store']);
@@ -45,13 +45,11 @@ Route::get('/company-register',[CompanyController::class,'index']);
 Route::get('/company-login',[CompanyController::class,'login']);
 
 Route::get('authorized/google', [GoogleController::class, 'redirectToGoogle']);
-
 Route::get('callback/google', [GoogleController::class, 'handleCallback']);
 
 Route::prefix('candidate')->group(function(){
 
     Route::get('dashboard',[CandidateProfileController::class,'index']);
-    
 
 });
 
@@ -81,12 +79,6 @@ Route::prefix('employee')->group(function(){
     Route::get('/resume_alert',[Fav_resumeController::class,'resume_alert']);
 
 });
-
-
-
-
-
-
 
 
 //  Artisan::call('config:clear');

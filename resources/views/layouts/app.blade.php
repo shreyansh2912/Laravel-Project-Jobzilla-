@@ -160,7 +160,7 @@
                                         <li><a href="candidate-chat.html">Chat</a></li>
                                     </ul>                                                                
                                 </li>
-                                <li class="has-child"><a href="javascript:;">Blog</a>
+                                {{-- <li class="has-child"><a href="javascript:;">Blog</a>
                                     <ul class="sub-menu">
                                         <li><a href="blog.html">Blog</a></li>                                        
                                         <li><a href="blog-grid.html">Blog Grid</a></li>
@@ -168,7 +168,7 @@
                                         <li><a href="blog-list.html">Blog List</a></li>
                                         <li><a href="blog-single.html">Blog Detail</a></li>                                        
                                     </ul>                                
-                                </li>
+                                </li> --}}
                             </ul>
 
                         </div>
