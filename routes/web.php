@@ -11,6 +11,7 @@ use App\Http\Controllers\Fav_resumeController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\ResumeController;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -47,10 +48,11 @@ Route::get('/company-login',[CompanyController::class,'login']);
 Route::get('authorized/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('callback/google', [GoogleController::class, 'handleCallback']);
 
-Route::prefix('candidate')->group(function(){
+Route::prefix('candidate')->middleware('isCandidate')->group(function(){
 
     Route::get('dashboard',[CandidateProfileController::class,'index']);
-
+    Route::get('profile',[CandidateProfileController::class,'profile']);
+    Route::resource('resume',ResumeController::class);
 });
 
 Route::prefix('/candidate-details')->middleware('guest')->group(function(){
@@ -65,7 +67,7 @@ Route::prefix('/candidate-details')->middleware('guest')->group(function(){
     Route::post('/education',[CandidateDetailsController::class,'create_education']);
 });
 
-Route::prefix('employee')->group(function(){
+Route::prefix('employee')->middleware('isComapany')->group(function(){
 
     Route::get('/dashboard',[EmployeeController::class,'index']);
     Route::get('/company_profile',[EmployeeController::class,'profile']);
@@ -78,6 +80,12 @@ Route::prefix('employee')->group(function(){
     Route::get('/my_profile',[EmployeeController::class,'profile']);
     Route::get('/resume_alert',[Fav_resumeController::class,'resume_alert']);
 
+});
+
+route::get('/job',function(){
+    dispatch(function(){
+        return redirect('/');
+    })->delay(now()->addSecond(20));
 });
 
 

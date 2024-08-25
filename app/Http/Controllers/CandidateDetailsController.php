@@ -73,9 +73,9 @@ class CandidateDetailsController extends Controller
             'role'=> 'required',
         ]);  
         $employmentDetails = new EmploymentDetails;
-        $employmentDetails->current_job = $request->current_job;
         $employmentDetails->current_company = $request->current_company;
         $employmentDetails->salary = $request->salary;
+        $employmentDetails->current_job = $request->current_job;
         $employmentDetails->current_location = $request->current_location;
         $employmentDetails->skills = $request->skills;
         $employmentDetails->experiance = $request->experiance;
@@ -100,6 +100,7 @@ class CandidateDetailsController extends Controller
         $educationDetails->specialization = $request->specialization;
         $educationDetails->university = $request->university;
         $educationDetails->education = $request->education;
+        $educationDetails->uid = session('id') ;
         $educationDetails->save();
         return redirect('/login');
     }

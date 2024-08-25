@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         // 'username',
-        // 'email',
+        'email',
         'password',
         'google_id',
         'social_id',
@@ -55,4 +54,12 @@ class User extends Authenticatable
     public function personal_detail(){
         return $this->hasOne(PersonalDetails::class);
     }
+    public function eduction(){
+        return $this->hasOne(EducationDetails::class,'uid');
+    }
+
+    public function resume(){
+        return $this->hasOne(Resume::class,'uid');
+    }
+
 }

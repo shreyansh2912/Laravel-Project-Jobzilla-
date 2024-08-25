@@ -256,7 +256,7 @@
         <!-- Sidebar Holder -->
         <nav id="sidebar-admin-wraper">
             <div class="page-logo">
-                <a href="index.html"><img src="{{asset('assets/images/logo-dark.png')}}" alt=""></a>
+                <a href="/"><img src="{{asset('assets/images/logo-dark.png')}}" alt=""></a>
             </div>
             
             <div class="admin-nav scrollbar-macosx">
@@ -358,7 +358,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="site-button" data-bs-dismiss="modal">No</button>
-                    <button type="button" class="site-button outline-primary">Yes</button>
+                    <a href="/logout">
+                        <button type="button" class="site-button outline-primary">Yes</button>
+                    </a>
                 </div>
             </div>
             </div>

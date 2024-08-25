@@ -9,6 +9,7 @@ class EducationDetails extends Model
 {
     use HasFactory;
 
+    protected $table = "eduction";
     protected $Fillable = [
         'highest_qualification',
         'course',
@@ -16,4 +17,8 @@ class EducationDetails extends Model
         'university',
         'education'
     ];
+
+    // public function user(){
+    //     return $this->belongsTo(User::class);
+    // }
 }

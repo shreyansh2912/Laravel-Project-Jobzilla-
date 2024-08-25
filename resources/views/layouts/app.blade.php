@@ -70,7 +70,7 @@
                 
                         <div class="logo-header">
                             <div class="logo-header-inner logo-header-one">
-                                <a href="index.html">
+                                <a href="/">
                                 <img src="{{asset('assets/images/logo-dark.png')}}" alt="">
                                 </a>
                             </div>
@@ -88,7 +88,7 @@
                         <div class="nav-animation header-nav navbar-collapse collapse d-flex justify-content-center">
  
                             <ul class=" nav navbar-nav">
-                                <li class="has-mega-menu"><a href="home">Home</a>                                                                
+                                <li class="has-mega-menu"><a href="/">Home</a>                                                                
                                 </li>
                                 <li class="has-child"><a href="javascript:;">Jobs</a>
                                     <ul class="sub-menu">
@@ -139,25 +139,11 @@
                                         <li><a href="icons.html">Icons</a></li> 
                                     </ul>                                                                
                                 </li>
-                                <li class="has-child"><a href="javascript:;">Candidates</a>
+                                <li class="has-child"><a href="javascript:;">Account</a>
                                     <ul class="sub-menu">
-                                        <li><a href="candidate-grid.html">Candidates Grid</a></li>
-                                        <li><a href="candidate-list.html">Candidates List</a></li>
-                                        <li class="has-child"><a href="javascript:;">Candidate Detail</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="candidate-detail.html">Detail 1</a>
-                                                <li><a href="candidate-detail-v2.html">Detail 2</a>
-                                            </ul> 
-                                        </li>
-                                        <li><a href="candidate-dashboard.html">Dashboard</a></li>
-                                        <li><a href="candidate-profile.html">My Pfofile</a></li>
-                                        <li><a href="candidate-jobs-applied.html">Applied Jobs</a></li>
-                                        <li><a href="candidate-my-resume.html">My Resume</a></li>
-                                        <li><a href="candidate-saved-jobs.html">Saved Jobs</a></li>
-                                        <li><a href="candidate-cv-manager.html">CV Manager</a></li>
-                                        <li><a href="candidate-job-alert.html">Job Alerts</a></li>
-                                        <li><a href="candidate-change-password.html">Change Passeord</a></li>
-                                        <li><a href="candidate-chat.html">Chat</a></li>
+                                        <li><a href="/candidate/profile">Profile</a></li>
+                                        <li><a href="/candidate/profile">Settings</a></li>
+                                        <li><a href="/candidate/profile">Change Password</a></li>
                                     </ul>                                                                
                                 </li>
                                 {{-- <li class="has-child"><a href="javascript:;">Blog</a>
@@ -200,13 +186,14 @@
                                             <i class="feather-log-in">LOGOUT</i> {{-- Sign out --}}
                                         </a>
                                     </div> 
+                                    @if (Auth::user()->roll_as == 2)
+                                        <div class="twm-nav-btn-right">
+                                            <a href="dash-post-job.html" class="twm-nav-post-a-job">
+                                                <i class="feather-briefcase"></i> Post a job
+                                            </a>
+                                        </div>
+                                    @endif                                          
                                     @endguest
-                                    
-                                    <div class="twm-nav-btn-right">
-                                        <a href="dash-post-job.html" class="twm-nav-post-a-job">
-                                            <i class="feather-briefcase"></i> Post a job
-                                        </a>
-                                    </div>
                                 </div>
                             </div> 
                         {{-- </form> --}}

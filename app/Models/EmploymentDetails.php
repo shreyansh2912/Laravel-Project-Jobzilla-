@@ -9,6 +9,7 @@ class EmploymentDetails extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'current_job',
         'current_company',

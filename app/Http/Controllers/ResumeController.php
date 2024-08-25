@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Resume;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CandidateProfileController extends Controller
+class ResumeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("candidate_profile.dashboard");
-    }
-    public function profile()
-    {
-        $data = User::where("id",Auth::user()->id)->with('personal_detail','eduction','resume')->get();
-        // dd($data);   
-        return view("candidate_profile.myprofile",compact("data"));
+        //
     }
 
     /**
@@ -27,7 +21,6 @@ class CandidateProfileController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,7 +28,21 @@ class CandidateProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "file"=>'required'
+        ]);
+
+        $file = $request->file;
+        $ext = $file->getClientOriginalExtension();
+        $fileName = time().".".$ext;
+        $file->move(public_path('uploads/resume'),$fileName);
+
+        $resume = new Resume;
+        $resume->uid = Auth::user()->id;
+        $resume->file = $fileName;
+        $resume->save();
+
+        return back()->with("message","Resume Added !");
     }
 
     /**

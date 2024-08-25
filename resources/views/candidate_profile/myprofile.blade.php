@@ -1,60 +1,13 @@
-@extends('layouts.app')
-@section('Home')
+@extends('layouts.sidebar')
+@section('candidatePage')
 
-    
-            <!-- OUR BLOG START -->
-            <div class="section-full p-t120  p-b90 site-bg-white">
-                
-
-                <div class="container">
-                    <div class="row">
-                        
-                        <div class="col-xl-3 col-lg-4 col-md-12 rightSidebar m-b30">
-
-                            <div class="side-bar-st-1">
-                                
-                                <div class="twm-candidate-profile-pic">
-                                    
-                                    <img src="images/user-avtar/pic4.jpg" alt="">
-                                    <div class="upload-btn-wrapper">
-                                        
-                                        <div id="upload-image-grid"></div>
-                                        <button class="site-button button-sm">Upload Photo</button>
-                                        <input type="file" name="myfile" id="file-uploader" accept=".jpg, .jpeg, .png">
-                                    </div>
-                                    
-                                </div>
-                                <div class="twm-mid-content text-center">
-                                    <a href="candidate-detail.html" class="twm-job-title">
-                                        <h4>Randall Henderson </h4>
-                                    </a>
-                                    <p>IT Contractor</p>
-                                </div>
-                               
-                                <div class="twm-nav-list-1">
-                                    <ul>
-                                        <li><a href="candidate-dashboard.html"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
-                                        <li class="active"><a href="candidate-profile.html"><i class="fa fa-user"></i> My Pfofile</a></li>
-                                        <li><a href="candidate-jobs-applied.html"><i class="fa fa-suitcase"></i> Applied Jobs</a></li>
-                                        <li><a href="candidate-my-resume.html"><i class="fa fa-receipt"></i> My Resume</a></li>
-                                        <li><a href="candidate-saved-jobs.html"><i class="fa fa-file-download"></i> Saved Jobs</a></li>
-                                        <li><a href="candidate-cv-manager.html"><i class="fa fa-paperclip"></i> CV Manager</a></li>
-                                        <li><a href="candidate-job-alert.html"><i class="fa fa-bell"></i> Job Alerts</a></li>
-                                        <li><a href="candidate-change-password.html"><i class="fa fa-fingerprint"></i> Change Passeord</a></li>
-                                        <li><a href="candidate-chat.html"><i class="fa fa-comments"></i>Chat</a></li>
-                                    </ul>
-                                </div>
-                                
-                            </div>
-
-                        </div>
+@yield('sidebar')
 
                         <div class="col-xl-9 col-lg-8 col-md-12 m-b30">
                             <!--Filter Short By-->
                             <div class="twm-right-section-panel site-bg-gray">
                                 <form>
                                     
-                
                                     <!--Basic Information-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading wt-panel-heading p-a20">
@@ -63,12 +16,13 @@
                                         <div class="panel-body wt-panel-body p-a20 m-b30 ">
                                             
                                             <div class="row">
-                                                                
+                                                    @foreach ($data as $value )
+                                                               
                                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                                         <div class="form-group">
                                                             <label>Your Name</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_name" type="text" placeholder="Devid Smith">
+                                                                <input class="form-control" name="company_name" type="text" value="{{$value->name}}">
                                                                 <i class="fs-input-icon fa fa-user "></i>
                                                             </div>
                                                         </div>
@@ -88,7 +42,7 @@
                                                         <div class="form-group">
                                                             <label>Email Address</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_Email" type="email" placeholder="Devid@example.com">
+                                                                <input class="form-control" name="company_Email" type="email" value="{{$value->email}}">
                                                                 <i class="fs-input-icon fas fa-at"></i>
                                                             </div>
                                                         </div>
@@ -109,7 +63,7 @@
                                                         <div class="form-group">
                                                             <label>Qualification</label>
                                                             <div class="ls-inputicon-box"> 
-                                                                <input class="form-control" name="company_since" type="text" placeholder="BTech">
+                                                                <input class="form-control" name="company_since" type="text" value="{{$value->eduction->highest_qualification}}">
                                                                 <i class="fs-input-icon fa fa-user-graduate"></i>
                                                             </div>
                                                         </div>
@@ -229,23 +183,63 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Description</label>
-                                                            <textarea class="form-control" rows="3">Greetings! when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</textarea>
+                                                            <textarea class="form-control" rows="3"></textarea>
                                                         </div>
                                                     </div>
                                                     
-                                                                                                                
+                                                    @endforeach                                                        
                                                     <div class="col-lg-12 col-md-12">                                   
                                                         <div class="text-left">
                                                             <button type="submit" class="site-button">Save Changes</button>
                                                         </div>
                                                     </div> 
-                                                                                        
+                                            </form>
                                                 
                                             </div>
                                                     
                                         </div>
                                     </div>
-                
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading wt-panel-heading p-a20">
+                                            <h4 class="panel-tittle m-a0">Resume</h4>
+                                        </div>
+                                        <div class="panel-body wt-panel-body p-a20 m-b30 ">
+                                            
+                                            <div class="row">
+                                                <form action="{{route('resume.store')}}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    @method('post')
+                                                    @isset($value->resume->file)
+                                                    <a class="mb-5" target="blank" href="../uploads/resume/{{$value->resume->file}}" style=" font-size: 18px; font-weight: 550; text-decoration: underline;" >View Resume </a> <br>
+                                                    @else
+                                                    Upload Resume <br>
+                                                    @endisset
+                                                    <input class="my-3" type="file" name="file" accept=".pdf"> <br>
+                                                    @error('file')
+                                                    <span class="text-danger">
+                                                        {{$message}}
+                                                    </span>
+                                                    @enderror
+                                                    @isset($value->resume->file)
+                                                        <form action="{{route('resume.update+k')}}" method="post">
+                                                            @csrf
+                                                            <div class="col-lg-12 col-md-12">                                   
+                                                                <div class="text-left">
+                                                                    <button type="submit" class="site-button">Save Changes</button>
+                                                                </div>
+                                                            </div> 
+                                                        </form>
+                                                    @else
+                                                    <div class="col-lg-12 col-md-12">                                   
+                                                        <div class="text-left">
+                                                            <button type="submit" class="site-button">Save Changes</button>
+                                                        </div>
+                                                    </div> 
+                                                    @endisset
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <!--Social Network-->
                                     <div class="panel panel-default">
                                         <div class="panel-heading wt-panel-heading p-a20">
@@ -346,7 +340,6 @@
                                                     
                                         </div>
                                     </div>
-                                </form>
                             </div>
                         </div>
 
@@ -357,3 +350,4 @@
           
 
 @endsection
+

@@ -40,7 +40,6 @@ class AuthController extends Controller
         $request->session()->put("name",$request->name);
         $request->session()->put("email",$request->email);
         $response = response($request->name);
-        // @dd($sessionName,$sessionEmail);
         return redirect('/candidate-details/personal');
     }
 
@@ -59,11 +58,15 @@ class AuthController extends Controller
                 {
                     return redirect('/')->with('message','Login success');
                 }
+                else{
+                    return redirect('/employee/dashboard');
+                }
         }
         else{
             echo "<script>alert('Invalid Username or Password')</script>";
             return view('/login');
         }
+
     }
 
     public function logout()
